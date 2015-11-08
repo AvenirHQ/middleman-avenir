@@ -1,4 +1,4 @@
-# middleman-seo
+# middleman-avenir
 A SEO-optimized project template for [Middleman](http://middlemanapp.com), the amazing static site building tool.
 
 Confused about what it means to SEO-optimize your site from a technical perspective? [Read this](http://secretsaucehq.com/blog/seo/the-technical-seo-and-social-media-optimization-checklist/).
@@ -32,15 +32,15 @@ __Other Features__
 - [Sass](http://sass-lang.com/) with [Bourbon](http://bourbon.io/)
 
 ## Usage
-Clone this repo into your `~/.middleman` directory as "seo"
+Clone this repo into your `~/.middleman` directory as "avenir"
 
-`git clone git@github.com:secretsaucehq/middleman-seo.git ~/.middleman/seo`
+`git clone git@github.com:secretsaucehq/middleman-seo.git ~/.middleman/avenir`
 
-Now you can simply init new projects with the "seo" template:
+Now you can simply init new projects with the "avenir" template:
 
-`middleman init my-project --template=seo `
+`middleman init my-project --template=avenir `
 
-Just don't forget to update `~/.middleman/seo` every now and then.
+Just don't forget to update `~/.middleman/avenir` every now and then.
 
 ## TODO's
 - SEO optimize the Middleman blog extension.
