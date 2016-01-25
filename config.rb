@@ -1,3 +1,14 @@
+
+###
+# dotenv
+###
+require 'dotenv'
+env = ENV['CUSTOM_MIDDLEMAN_ENV'] || 'development'
+Dotenv.load(
+  File.join(Dir.pwd, '.env'),
+  File.join(Dir.pwd, ".env.#{env}")
+)
+
 ###
 # Compass
 ###
@@ -28,17 +39,17 @@
 # proxy "/this-page-has-no-template.html", "/template-file.html", :locals => {
 #  :which_fake_page => "Rendering a fake page with a local variable" }
 
+# Markdown Options
+# If you'd like GitHub-style code fencing, check out https://github.com/middleman/middleman-syntax
+set :markdown_engine, :redcarpet
+
 page 'sitemap.html', layout: false
 page 'sitemap.xml', layout: false
 page 'feed.xml', layout: false
+page '404.html', layout: false
 
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
-
-###
-# Helpers
-# Built in custom helpers live in /helpers/custom_template_helpers.rb
-###
 
 # Reload the browser automatically whenever files change
 configure :development do
@@ -47,15 +58,26 @@ end
 
 # Add bower's directory to sprockets asset path
 after_configuration do
-  @bower_config = JSON.parse IO.read("#{root}/.bowerrc")
-  sprockets.append_path File.join "#{root}", @bower_config["directory"]
+  @bower_config = JSON.parse(IO.read(File.join(root, '.bowerrc')))
+  sprockets.append_path File.join root, @bower_config['directory']
 end
 
+set :partials_dir, 'layouts/partials'
 set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
 set :images_dir, 'images'
 
 activate :autoprefixer
+
+activate :blog do |blog|
+  # blog.summary_separator = <!--MORE-->
+  # blog.summary_length = 250
+  # blog.default_extension = ".md"
+  blog.sources = 'blog/{year}-{month}-{day}-{title}.html'
+  blog.permalink = 'blog/{year}/{title}'
+  blog.layout = 'blog'
+end
+
 activate :directory_indexes
 
 # Build-specific configuration
@@ -63,11 +85,21 @@ configure :build do
   # For example, change the Compass output style for deployment
   activate :minify_css
   activate :minify_javascript
-  activate :asset_hash
+  activate :asset_hash do |f|
+    f.ignore = [/^fonts/, /^images/]
+  end
   activate :smusher
+  activate :imageoptim do |options|
+    # Use a build manifest to prevent re-compressing images between builds
+    options.manifest = false
+    # Silence problematic image_optim workers
+    options.skip_missing_workers = true
+    options.pngout = false
+    options.svgo = false
+  end
 
   # Use relative URLs
-  # activate :relative_assets
+  activate :relative_assets
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
@@ -77,5 +109,5 @@ configure :build do
   activate :robots, rules: [
     { user_agent: '*', allow: ['/'] }
   ],
-  sitemap: "#{data.site.url}/sitemap.xml"
+  sitemap: "#{root_url}/sitemap.xml"
 end
