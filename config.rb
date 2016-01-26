@@ -82,6 +82,8 @@ activate :directory_indexes
 
 # Build-specific configuration
 configure :build do
+  root_url = ENV['ROOT_URL']
+
   # For example, change the Compass output style for deployment
   activate :minify_css
   activate :minify_javascript
