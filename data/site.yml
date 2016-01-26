@@ -1,14 +1,25 @@
 # Required
+# HTML DOCTYPE lang
 language: 'en-us'
-url: 'http://www.example.com'
-human_url: 'Example.com'
+
+# human readable site name, for SEO
 name: 'Example Site'
+# site description, for SEO results
 description: 'Example site description'
+# human readable site title, for SEO and default page title
 title: 'Example site title'
 
-# Optional
-logo_image_name: 'example-logo-big.png'
-logo_image_path: 'http://www.examplecdn.com/example-logo-large.png'
+# site's twitter handle, for attributing Twitter shares
 twitter_handle: '@Example'
-# facebook_app_id: ''
 
+# for attributing Facebook shares to your page/app
+facebook_app_id: '1234567890'
+
+# image to use for social sharing, by default
+seo_banner: '/images/banner.jpg'
+
+# Universal Google Analytics ID with "Enhanced Link Attribution" turned on
+google_analytics_id: 'UA-ABCDEF-1'
+
+facebook_url: 'https://www.facebook.com'
+youtube_url: 'https://www.youtube.com'

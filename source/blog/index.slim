@@ -1,0 +1,16 @@
+---
+title: Blog Index
+---
+
+h1
+  = 'Blog Index'
+
+h2
+  = 'Some Posts...'
+- blog.articles.each do |article|
+  article
+    h1
+      a href=article.url
+        = article.title
+
+    = article.summary

@@ -5,11 +5,11 @@ source 'https://rubygems.org'
 ruby '2.2.3'
 
 gem 'dotenv'
+gem 'middleman', '~> 3.4.1'
 
-gem "middleman", "~>3.4.0"
-# gem middleman-blog
+gem 'middleman-blog'
 # Live-reloading plugin
-gem "middleman-livereload", "~> 3.1.0"
+gem 'middleman-livereload', '~> 3.1.0'
 # Lossless image size reduction
 # https://github.com/grosser/smusher
 gem 'middleman-smusher'
@@ -21,6 +21,9 @@ gem 'rake'
 gem 'builder' # XML Builder
 gem 'slim'
 gem 'middleman-autoprefixer'
+gem 'redcarpet'
+
+gem 'middleman-imageoptim'
 
 ### Debugging
 gem 'pry'

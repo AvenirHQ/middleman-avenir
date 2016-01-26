@@ -1,5 +1,14 @@
 ---
-title: Middleman Avenir Template
+title: My Index Page
+twitter_creator: "@mattgcondon"
+seo_description: Custom Description
 ---
 
 h1 Middleman Avenir Template
+
+- if environment? :development
+  h2 You're in the development environment!
+- elsif environment? :staging
+  h2 You're in the staging environment!
+- elsif environment? :production
+  h2 You're in the production environment!

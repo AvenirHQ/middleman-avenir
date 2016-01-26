@@ -10,23 +10,33 @@ html itemscope='' itemtype='http://schema.org/WebPage' lang=data.site.language
 
     // Twitter
     meta name='twitter:card' content=page_twitter_card_type
-    meta name='twitter:site' content=data.site.twitter_handle
+    meta name='twitter:site' content=page_twitter_handle
     meta name='twitter:title' content=page_title
     meta name='twitter:description' content=page_description
-    meta name='twitter:creator' content=data.site.twitter_handle
-    meta name='twitter:image:src' content=data.site.image
+    meta name='twitter:creator' content=twitter_creator
+    meta name='twitter:image:src' content=seo_image
     // Open Graph General (Facebook & Pinterest)
     meta property='og:url' content=current_page_url
     meta property='og:title' content=page_title
     meta property='og:description' content=page_description
     meta property='og:site_name' content=data.site.name
-    meta property='og:image' content=data.site.image
-    meta property='og:app_id' content='952268334783316'
-    meta property='og:type' content='website'
+    meta property='og:image' content=seo_image
     // Google Plus
     meta itemprop='name' content=page_title
     meta itemprop='description' content=page_description
-    meta itemprop='image' content=data.site.image
+    meta itemprop='image' content=seo_image
+    // Facebook
+    - if data.site.facebook_app_id
+      meta property='fb:app_id' content=data.site.facebook_app_id
+
+    // Article Tags
+    - if current_article
+      meta propery='og:type' content='article'
+      - current_article.tags.each do |tag|
+        meta property='og:article:tag' content=tag
+    - else
+      meta property='og:type' content='website'
+
 
     // Mobile Specific Metas
     meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'
@@ -40,10 +50,11 @@ html itemscope='' itemtype='http://schema.org/WebPage' lang=data.site.language
     = favicon_tag 'images/favicon.ico'
     = favicon_tag 'images/favicon.ico', rel: 'apple-touch-icon', type: 'image/png'
 
-  body class=page_classes
+  body
     main role='main'
       = yield
 
-    / Footer
-    footer
-      = link_to 'Sitemap', 'sitemap'
+    // Footer
+    = partial 'footer'
+
+    = google_analytics_tag data.site.google_analytics_id

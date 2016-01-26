@@ -1,0 +1,18 @@
+---
+title: Welcome to the SEO-optimized Avenir Template
+date: 2015-11-12 09:35 UTC
+tags: "welcome, what's up, hello"
+---
+
+# This is Your First Blog Post
+
+You should probably remove this blog post and make your own!
+
+Feel free to use the following YAML frontmatter for changing the default social sharing options about your blog post:
+
+- `title`
+- `date` (`YYYY-MM-DD hh:mm:ss TZ`), but all you really need is `YYYY-MM-DD`
+- `twitter_creator` if the creator of the blog post is not `site.twitter_handle`
+- `seo_image` if you want to override `site.seo_banner`
+- `twitter_card_type` if you want to override `"summary"`
+- `preferred_url` if there is a preferrel canonical URL

@@ -6,6 +6,9 @@
 
 # Ignore environment variables
 .env
+.env.development
+.env.staging
+.env.production
 
 # Ignore bundler config
 /.bundle
