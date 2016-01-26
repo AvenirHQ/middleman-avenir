@@ -6,7 +6,7 @@ task :build, :env do |t, args|
   args.with_defaults(:env => 'staging')
   env = args[:env]
 
-  sh "CUSTOM_MIDDLEMAN_ENV=#{env} middleman build"
+  sh "CUSTOM_MIDDLEMAN_ENV=#{env} bundle exec middleman build"
 end
 
 desc 'Deploy the app to S3'
@@ -39,5 +39,5 @@ end
 
 desc 'Develop the Site'
 task :dev do
-  sh 'CUSTOM_MIDDLEMAN_ENV=development middleman server'
+  sh 'CUSTOM_MIDDLEMAN_ENV=development bundle exec middleman server'
 end

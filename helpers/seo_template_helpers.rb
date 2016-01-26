@@ -15,13 +15,13 @@ module SeoTemplateHelpers
     "#{root_url}#{page.url}"
   end
 
+  # SEO Helpers
   def page_twitter_card_type
     current_page.data.twitter_card_type || 'summary_large_image'
   end
 
-  # SEO Helpers
-  def twitter_creator
-    current_page.data.twitter_creator || data.site.twitter_handle
+  def twitter_handle
+    current_page.data.twitter_handle || data.site.twitter_handle
   end
 
   def seo_image
