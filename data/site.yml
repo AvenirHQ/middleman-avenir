@@ -16,7 +16,7 @@ twitter_handle: '@Example'
 facebook_app_id: '1234567890'
 
 # image to use for social sharing, by default
-seo_banner: '/images/banner.jpg'
+seo_image: '/banner.jpg'
 
 # Universal Google Analytics ID with "Enhanced Link Attribution" turned on
 google_analytics_id: 'UA-ABCDEF-1'

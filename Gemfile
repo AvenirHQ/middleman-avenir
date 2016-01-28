@@ -2,9 +2,8 @@
 # the following line to use 'http://' instead
 source 'https://rubygems.org'
 
-ruby '2.2.3'
-
 gem 'dotenv'
+gem 'rake'
 gem 'middleman', '~> 3.4.1'
 
 gem 'middleman-blog'

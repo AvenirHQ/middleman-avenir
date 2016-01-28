@@ -16,17 +16,33 @@ __SEO Features__
 ### Frontmatter Features
 
 - `preferred_url` (`rel="canonical"`) for any page
-- `title`,
+- `title`
 - `description`
 - `seo_image`
+    + relative link to an image to use as the image for embeds
+    + example: `/banner.png`
 - `twitter_card_type`
+    + Twitter card type
 - `twitter_handle`
+    + Twitter handle for the site the content is hosted on
+- `twitter_creator`
+    + Creator of the content
 - `tags` (generates meta tags)
     + Expects a yaml array of strings
 
-## Usage
+## Usage & Getting Started
 
-To get started, first create all of the `.env` files for your environments. They should look similar to the example `.env.{env}.default` files at the root of the project. These files let you configure deployment to S3, as well as environment-specific values (notably `ROOT_URL`, useful for hosting a website taht isn't at the root of a website).
+1. `gem install middleman -v 3.4.1`
+    - Hope and pray that you don't need to build `nokogiri`.
+2. Create your new static site instance
+    - `git clone git@github.com:AvenirHQ/middleman-avenir.git ~/.middleman/avenir`
+    - `middleman init my-project --template=avenir`
+    - Don't forget to twiddle your thumbs as `bundle install` runs its course.
+    - `cd my-project`
+3. Create all of the `.env` files.
+    - They should closely mimick the example `.env.{env}.default` files provided.
+    - These files let you configure deployment to S3, as well as environment-specific values (notably `ROOT_URL`, necessary for hosting a website that isn't at the root of a domain).
+4. Start developing!
 
 ### Build & Deploy
 
@@ -73,11 +89,31 @@ __Other Features__
 - [Sass](http://sass-lang.com/) with [Bourbon](http://bourbon.io/)
 - [awscli](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) for deploying to S3
 
-## Usage
-Clone this repo into your `~/.middleman` directory as "avenir"
+## Notes
 
-`git clone git@github.com:avenirhq/middleman-avenir.git ~/.middleman/avenir`
+### Middleman 3 vs 4
 
-Now you can simply init new projects with the "avenir" template:
+We're using `middleman-3.4.1` for this project until our external dependencies (notably `middleman-imagemin` and others) update to the `middleman-4` extension API.
 
-`middleman init my-project --template=avenir `
+To mimic the [`environments`](https://middlemanapp.com/basics/upgrade-v4/) feature in `middleman-4`, we implemented the `CUSTOM_MIDDLEMAN_ENV` environment variable that determins which `.env.{env}` file to load into the environment. This lets us do environment-specific things at the deploy level in `Rakefile` and at the application level in `config.rb` and within templates.
+
+The upgrade path looks something like:
+
+- strip out the `CUSTOM_MIDDLEMAN_ENV` code and use the `-e {environment}` flag for determining environment
+    + includes updating the `Rakefile`
+    + the `.env` files should be replaces with the `environments/{env}.rb` equivalents
+- update deps to `middleman-4` compatible versions
+- remove the `environment?` template helper (is a builtin in `middleman-4`)
+- dance joyously after mitigating technical debt
+
+## LICENSE
+
+The MIT License (MIT)
+
+Copyright (c) 2015 Avenir Interactive
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
