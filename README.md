@@ -42,7 +42,8 @@ __SEO Features__
 3. Create all of the `.env` files.
     - They should closely mimick the example `.env.{env}.default` files provided.
     - These files let you configure deployment to S3, as well as environment-specific values (notably `ROOT_URL`, necessary for hosting a website that isn't at the root of a domain).
-4. Start developing!
+4. `bower install`
+5. Start developing!
 
 ### Build & Deploy
 
