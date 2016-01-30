@@ -20,12 +20,16 @@ module SeoTemplateHelpers
     current_page.data.twitter_card_type || 'summary_large_image'
   end
 
-  def twitter_handle
+  def page_twitter_handle
     current_page.data.twitter_handle || data.site.twitter_handle
   end
 
+  def page_twitter_creator
+    current_page.data.twitter_creator || data.site.twitter_handle
+  end
+
   def seo_image
-    "#{root_url}#{current_page.data.seo_image || data.site.seo_banner}"
+    image_link(current_page.data.seo_image || data.site.seo_image)
   end
 
   # Social share URLs
